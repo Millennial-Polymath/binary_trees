@@ -31,8 +31,8 @@ size_t binary_tree_is_full(const binary_tree_t *tree)
 	if (binary_tree_is_leaf(tree->left) && binary_tree_is_leaf(tree->right))
 		return (1);
 
-	binary_tree_is_full(tree->left);
-	binary_tree_is_full(tree->right);
-
+	if (!binary_tree_is_leaf(tree))
+		return (binary_tree_is_full(tree->left) &&
+			binary_tree_is_full(tree->right));
 	return (0);
 }
